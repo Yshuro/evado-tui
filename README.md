@@ -74,6 +74,7 @@ Otherwise, download the archive for your platform from
 [Releases](https://github.com/nerdlabz/evado-tui/releases), check it against
 `SHA256SUMS`, and put `evado` somewhere on your `PATH`. Builds are published
 for macOS, Linux and Windows, on ARM64 and x86-64, and for 32-bit ARM Linux.
+The macOS binaries are signed and notarized.
 With Go 1.25 or later, `go install github.com/nerdlabz/evado-tui/cmd/evado@latest`
 works too, though that build reports its version as `dev`.
 

@@ -1,9 +1,14 @@
 # Releasing
 
 A release is a version tag. Pushing `vX.Y.Z` runs `.github/workflows/release.yml`,
-which tests the source, builds all seven targets, packages archives with
-SHA-256 checksums, and publishes a GitHub release. It uses the repository's
-ordinary Actions token, and it only runs in a public repository.
+which tests the source, builds all seven targets, signs and notarizes the two
+macOS binaries, packages archives with SHA-256 checksums, and publishes a
+GitHub release. It only runs in the public `nerdlabz/evado-tui` repository.
+
+The workflow refuses a tag that is not a plain `vX.Y.Z` or does not match
+`VERSION`, stamps that version into the binaries and the Windows file
+properties, and checks that the built Linux and signed macOS binaries both
+report `evado X.Y.Z` before anything is published.
 
 ## Cutting a release
 
@@ -38,6 +43,33 @@ only the executable, the license and dependency notices into each archive.
 Archives use fixed timestamps, so the same binaries give the same archives.
 `SHA256SUMS` covers the archives, the generated Homebrew formula and the Nix
 release manifest.
+
+## macOS signing and notarization
+
+The `sign-macos` job runs in the `release` environment and needs these
+secrets there. It fails before signing anything if one is missing.
+
+| Secret | Value |
+| --- | --- |
+| `MACOS_CERTIFICATE` | The Developer ID Application certificate and its private key, exported from Keychain Access as `.p12`, then base64-encoded |
+| `MACOS_CERTIFICATE_PASSWORD` | The password chosen when exporting the `.p12` |
+| `MACOS_SIGNING_IDENTITY` | The identity's full name, as `security find-identity -v -p codesigning` prints it |
+| `APPLE_API_KEY` | An App Store Connect API key (`.p8`) with the Developer role, base64-encoded |
+| `APPLE_API_KEY_ID` | That key's ID |
+| `APPLE_API_ISSUER_ID` | The issuer ID shown above the keys list in App Store Connect |
+
+```sh
+gh secret set MACOS_CERTIFICATE -R nerdlabz/evado-tui --env release < <(base64 -i developer-id.p12)
+gh secret set MACOS_CERTIFICATE_PASSWORD -R nerdlabz/evado-tui --env release
+gh secret set MACOS_SIGNING_IDENTITY -R nerdlabz/evado-tui --env release
+gh secret set APPLE_API_KEY -R nerdlabz/evado-tui --env release < <(base64 -i AuthKey_XXXXXXXXXX.p8)
+gh secret set APPLE_API_KEY_ID -R nerdlabz/evado-tui --env release
+gh secret set APPLE_API_ISSUER_ID -R nerdlabz/evado-tui --env release
+```
+
+Binaries are signed with the hardened runtime and a secure timestamp, under
+the identifier `app.evado.cli`. A bare executable cannot have a notarization
+ticket stapled to it, so Gatekeeper checks it online the first time it runs.
 
 ## Homebrew
 

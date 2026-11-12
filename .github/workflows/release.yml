@@ -12,12 +12,12 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  publish:
-    # Release downloads must be public, so a private fork never publishes one.
-    if: github.event.repository.private == false
+  build:
+    # Release downloads must be public, and only this repository signs them.
+    if: github.event.repository.private == false && github.repository == 'nerdlabz/evado-tui'
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    outputs:
+      version: ${{ steps.version.outputs.value }}
     steps:
       - uses: actions/checkout@v4
       - name: Read version
@@ -40,13 +40,147 @@ jobs:
       - run: mise run check
       - run: mise run test
       - run: mise run test-race
+      - name: Stamp the version into the Windows file properties
+        env:
+          VERSION: ${{ steps.version.outputs.value }}
+        working-directory: cmd/evado
+        run: |
+          mise exec -- go run github.com/tc-hib/go-winres@v0.3.3 make \
+            --arch amd64,arm64 --product-version "$VERSION" --file-version "$VERSION"
       - name: Build release binaries
         env:
           EVADO_BUILD_VERSION: ${{ steps.version.outputs.value }}
         run: mise run build-all
+      - name: Check the built version
+        env:
+          VERSION: ${{ steps.version.outputs.value }}
+        run: |
+          got=$(./dist/evado_linux_amd64 -version)
+          if [[ "$got" != "evado $VERSION" ]]; then
+            echo "Built binary reports '$got', expected 'evado $VERSION'" >&2
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: binaries
+          path: dist/evado_*
+          if-no-files-found: error
+          retention-days: 7
+
+  sign-macos:
+    needs: build
+    runs-on: macos-latest
+    environment: release
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: binaries
+          path: dist
+      - name: Check signing secrets
+        env:
+          MACOS_CERTIFICATE: ${{ secrets.MACOS_CERTIFICATE }}
+          MACOS_CERTIFICATE_PASSWORD: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
+          MACOS_SIGNING_IDENTITY: ${{ secrets.MACOS_SIGNING_IDENTITY }}
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
+          APPLE_API_ISSUER_ID: ${{ secrets.APPLE_API_ISSUER_ID }}
+        run: |
+          missing=0
+          for name in MACOS_CERTIFICATE MACOS_CERTIFICATE_PASSWORD MACOS_SIGNING_IDENTITY \
+                      APPLE_API_KEY APPLE_API_KEY_ID APPLE_API_ISSUER_ID; do
+            if [[ -z "${!name}" ]]; then echo "Missing secret $name" >&2; missing=1; fi
+          done
+          exit $missing
+      - name: Import the Developer ID certificate
+        env:
+          MACOS_CERTIFICATE: ${{ secrets.MACOS_CERTIFICATE }}
+          MACOS_CERTIFICATE_PASSWORD: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
+        run: |
+          keychain="$RUNNER_TEMP/signing.keychain-db"
+          password=$(openssl rand -hex 24)
+          echo "$MACOS_CERTIFICATE" | base64 --decode > "$RUNNER_TEMP/certificate.p12"
+          security create-keychain -p "$password" "$keychain"
+          security set-keychain-settings -lut 21600 "$keychain"
+          security unlock-keychain -p "$password" "$keychain"
+          security import "$RUNNER_TEMP/certificate.p12" -P "$MACOS_CERTIFICATE_PASSWORD" \
+            -A -t cert -f pkcs12 -k "$keychain"
+          security set-key-partition-list -S apple-tool:,apple: -k "$password" "$keychain" > /dev/null
+          existing=$(security list-keychains -d user | tr -d '"')
+          # Each existing keychain is its own argument, so this splits on purpose.
+          # shellcheck disable=SC2086
+          security list-keychains -d user -s "$keychain" $existing
+          rm "$RUNNER_TEMP/certificate.p12"
+      - name: Sign
+        env:
+          MACOS_SIGNING_IDENTITY: ${{ secrets.MACOS_SIGNING_IDENTITY }}
+        run: |
+          for binary in dist/evado_darwin_arm64 dist/evado_darwin_amd64; do
+            chmod +x "$binary"
+            codesign --force --options runtime --timestamp \
+              --identifier app.evado.cli --sign "$MACOS_SIGNING_IDENTITY" "$binary"
+            codesign --verify --strict --verbose=2 "$binary"
+          done
+      # A bare executable cannot have a ticket stapled to it, so Gatekeeper
+      # looks the notarization up online the first time the binary runs.
+      - name: Notarize
+        env:
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
+          APPLE_API_ISSUER_ID: ${{ secrets.APPLE_API_ISSUER_ID }}
+        run: |
+          key="$RUNNER_TEMP/notary.p8"
+          echo "$APPLE_API_KEY" | base64 --decode > "$key"
+          for arch in arm64 amd64; do
+            archive="$RUNNER_TEMP/evado_darwin_$arch.zip"
+            ditto -c -k "dist/evado_darwin_$arch" "$archive"
+            result=$(xcrun notarytool submit "$archive" --key "$key" --key-id "$APPLE_API_KEY_ID" \
+              --issuer "$APPLE_API_ISSUER_ID" --wait --output-format json)
+            echo "$result"
+            if [[ "$(echo "$result" | jq -r .status)" != "Accepted" ]]; then
+              xcrun notarytool log "$(echo "$result" | jq -r .id)" --key "$key" \
+                --key-id "$APPLE_API_KEY_ID" --issuer "$APPLE_API_ISSUER_ID" || true
+              exit 1
+            fi
+          done
+          rm "$key"
+      - name: Check the signed version
+        env:
+          VERSION: ${{ needs.build.outputs.version }}
+        run: |
+          got=$(./dist/evado_darwin_arm64 -version)
+          if [[ "$got" != "evado $VERSION" ]]; then
+            echo "Signed binary reports '$got', expected 'evado $VERSION'" >&2
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: binaries-macos-signed
+          path: dist/evado_darwin_*
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    needs: [build, sign-macos]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: binaries
+          path: dist
+      # The signed macOS binaries replace the unsigned ones from the build job.
+      - uses: actions/download-artifact@v4
+        with:
+          name: binaries-macos-signed
+          path: dist
+      - uses: jdx/mise-action@v2
+        with:
+          cache: false
       - name: Package release
         env:
-          RELEASE_VERSION: ${{ steps.version.outputs.value }}
+          RELEASE_VERSION: ${{ needs.build.outputs.version }}
         run: |
           mise exec -- python3 scripts/third-party-notices.py > dist/THIRD_PARTY_NOTICES.txt
           python3 scripts/package-release.py "$RELEASE_VERSION" \
@@ -61,5 +195,5 @@ jobs:
         run: |
           gh release create "$RELEASE_TAG" dist/release/* \
             --verify-tag --draft --title "Evado $RELEASE_TAG" \
-            --notes "Installable binaries for macOS, Linux and Windows. Package metadata is included for Homebrew and Nix."
-          gh release edit "$RELEASE_TAG" --draft=false
+            --notes "Installable binaries for macOS, Linux and Windows. The macOS binaries are signed and notarized. Package metadata is included for Homebrew and Nix."
+          gh release edit "$RELEASE_TAG" --draft=false --latest
