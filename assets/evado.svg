@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="304 92 645 645" role="img" aria-labelledby="title"><title id="title">Evado catcher</title><defs>
+  <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FF891C"/><stop offset="1" stop-color="#FF7B17"/></linearGradient>
+  <linearGradient id="cream" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFFCF4"/><stop offset="1" stop-color="#FFF9EB"/></linearGradient>
+  <linearGradient id="coral" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FF6050"/><stop offset="1" stop-color="#FA5145"/></linearGradient>
+</defs><rect id="background" x="304" y="92" width="645" height="645" rx="146" fill="url(#orange)"/><g id="catcher">
+  <path id="pocket-back" fill="url(#cream)" d="M402 346C402 328 430 319 463 313C506 305 567 301 625 301C712 301 796 310 830 326C842 332 848 339 848 349C849 413 839 504 819 566C795 642 742 670 622 670C508 670 458 644 433 576C412 519 400 410 402 346Z"/>
+  <ellipse id="pocket-opening" cx="625" cy="350" rx="208" ry="49" fill="#073B46"/>
+  <path id="todo-note" fill="url(#coral)" d="M480 381L454 272C449 254 456 244 474 239L609 201C627 195 639 202 644 222L689 403Z"/>
+  <path id="pocket-front" fill="url(#cream)" d="M402 346C426 378 522 399 625 399C728 399 824 378 848 348C849 413 839 504 819 566C795 642 742 670 622 670C508 670 458 644 433 576C412 519 400 410 402 346Z"/>
+  <g id="face" fill="#073B46">
+    <circle id="eye-left" cx="609" cy="472" r="14"/>
+    <circle id="eye-right" cx="765" cy="468" r="14"/>
+    <path id="smile" d="M653 510C657 503 665 501 671 508C681 523 711 523 720 507C724 500 731 498 737 502C743 506 741 514 738 519C721 548 674 547 654 523C650 518 650 514 653 510Z"/>
+  </g>
+</g></svg>

@@ -1,0 +1,65 @@
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    # Release downloads must be public, so a private fork never publishes one.
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read version
+        id: version
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          if [[ ! "$RELEASE_TAG" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+            echo "Release tags must be stable versions such as v1.0.0" >&2
+            exit 1
+          fi
+          if [[ "${RELEASE_TAG#v}" != "$(cat VERSION)" ]]; then
+            echo "Release tag must match VERSION" >&2
+            exit 1
+          fi
+          echo "value=${RELEASE_TAG#v}" >> "$GITHUB_OUTPUT"
+      - uses: jdx/mise-action@v2
+        with:
+          cache: false
+      - run: mise run check
+      - run: mise run test
+      - run: mise run test-race
+      - name: Build release binaries
+        env:
+          EVADO_BUILD_VERSION: ${{ steps.version.outputs.value }}
+        run: mise run build-all
+      - name: Package release
+        env:
+          RELEASE_VERSION: ${{ steps.version.outputs.value }}
+        run: |
+          mise exec -- python3 scripts/third-party-notices.py > dist/THIRD_PARTY_NOTICES.txt
+          python3 scripts/package-release.py "$RELEASE_VERSION" \
+            --repository "$GITHUB_REPOSITORY" \
+            --notices dist/THIRD_PARTY_NOTICES.txt --output dist/release
+          cd dist/release
+          sha256sum --check SHA256SUMS
+      - name: Publish archives and package metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$RELEASE_TAG" dist/release/* \
+            --verify-tag --draft --title "Evado $RELEASE_TAG" \
+            --notes "Installable binaries for macOS, Linux and Windows. Package metadata is included for Homebrew and Nix."
+          gh release edit "$RELEASE_TAG" --draft=false

@@ -1,0 +1,50 @@
+class Evado < Formula
+  desc "Terminal client for Evado todos"
+  homepage "https://evado.app"
+  license "MIT"
+  version "@VERSION@"
+
+  on_macos do
+    on_arm do
+      depends_on arch: :arm64
+      url "https://github.com/@RELEASE_REPOSITORY@/releases/download/v@VERSION@/evado_@VERSION@_darwin_arm64.tar.gz"
+      sha256 "@DARWIN_ARM64_SHA256@"
+    end
+    on_intel do
+      depends_on arch: :x86_64
+      url "https://github.com/@RELEASE_REPOSITORY@/releases/download/v@VERSION@/evado_@VERSION@_darwin_amd64.tar.gz"
+      sha256 "@DARWIN_AMD64_SHA256@"
+    end
+  end
+
+  on_linux do
+    on_arm do
+      depends_on arch: :arm64
+      url "https://github.com/@RELEASE_REPOSITORY@/releases/download/v@VERSION@/evado_@VERSION@_linux_arm64.tar.gz"
+      sha256 "@LINUX_ARM64_SHA256@"
+    end
+    on_intel do
+      depends_on arch: :x86_64
+      url "https://github.com/@RELEASE_REPOSITORY@/releases/download/v@VERSION@/evado_@VERSION@_linux_amd64.tar.gz"
+      sha256 "@LINUX_AMD64_SHA256@"
+    end
+  end
+
+  def install
+    bin.install "evado"
+    pkgshare.install "THIRD_PARTY_NOTICES.txt"
+    pkgshare.install "LICENSE" if File.exist?("LICENSE")
+  end
+
+  test do
+    assert_equal "evado #{version}", shell_output("#{bin}/evado -version").strip
+
+    ENV["EVADO_CONFIG"] = (testpath/"profile/config.json").to_s
+    added = JSON.parse(shell_output("#{bin}/evado -local add -json 'Homebrew formula test'"))
+    todo = added.fetch("todos").fetch(0)
+    assert_equal "Homebrew formula test", todo.fetch("title")
+
+    listed = JSON.parse(shell_output("#{bin}/evado -local ls -json"))
+    assert_equal [todo.fetch("id")], listed.fetch("todos").map { |item| item.fetch("id") }
+  end
+end

@@ -1,0 +1,29 @@
+# build output
+/dist/
+/evado
+/fakeserver
+*.exe
+*.test
+*.out
+__pycache__/
+*.pyc
+
+# a token, settings or todos kept while developing: never commit these
+*.local.json
+evado-dev.json
+/config.json
+/todos.json
+*.json.tmp
+*.bak
+.env
+.env.*
+
+# editor and OS noise
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+
+

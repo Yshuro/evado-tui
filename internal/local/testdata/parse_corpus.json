@@ -1,0 +1,1847 @@
+{
+ "about": "Phrases read by the Evado service's parser (POST /parse; src/lib/parse.ts), for an account in UTC, at the instant in `now` (Thursday 1 October 2026) unless a phrase gives its own. This is the service's own docs/parser-corpus.json: its `service` readings are copied from it unchanged, and `assumed` is the half of the day (am or pm) it guessed for a time typed without am/pm. TestParseCorpus reads each phrase with local.Parse as of the same instant and holds it to `service`. A phrase with a `local` reading is one this reader reads differently on purpose, and `why` says so. To refresh, copy docs/parser-corpus.json over this file, put each `local` and `why` back on its phrase, and drop the ones the service now reads the way this reader does; the diff against the service's copy then shows only this note, `local` and `why`. Follow-up readings were recorded from service main on 2026-10-03 for issue #64, including boundary clocks and calendar month ends.",
+ "now": "2026-10-01T05:53:54Z",
+ "tz": "UTC",
+ "phrases": [
+  {
+   "in": "Buy milk",
+   "service": {
+    "title": "Buy milk",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Pay the cable bill Friday at 5pm",
+   "service": {
+    "title": "Pay the cable bill",
+    "day": "2026-10-02",
+    "time": "17:00",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Pay the cable bill on friday",
+   "service": {
+    "title": "Pay the cable bill",
+    "day": "2026-10-02",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call Sam tomorrow",
+   "service": {
+    "title": "Call Sam",
+    "day": "2026-10-02",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "call sam tomorrow 9am",
+   "service": {
+    "title": "call sam",
+    "day": "2026-10-02",
+    "time": "09:00",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Water the plants today",
+   "service": {
+    "title": "Water the plants",
+    "day": "2026-10-01",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "standup at 9:30am",
+   "service": {
+    "title": "standup",
+    "day": "2026-10-01",
+    "time": "09:30",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "lunch at noon",
+   "service": {
+    "title": "lunch",
+    "day": "2026-10-01",
+    "time": "12:00",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "ship it 17:30",
+   "service": {
+    "title": "ship it",
+    "day": "2026-10-01",
+    "time": "17:30",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Renew passport in 2 weeks",
+   "service": {
+    "title": "Renew passport",
+    "day": "2026-10-15",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Dentist oct 3",
+   "service": {
+    "title": "Dentist",
+    "day": "2026-10-03",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Dentist October 3rd at 2pm",
+   "service": {
+    "title": "Dentist",
+    "day": "2026-10-03",
+    "time": "14:00",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Taxes 15 april",
+   "service": {
+    "title": "Taxes",
+    "day": "2027-04-15",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Launch 2026-11-05",
+   "service": {
+    "title": "Launch",
+    "day": "2026-11-05",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Review plan next week",
+   "service": {
+    "title": "Review plan",
+    "day": "2026-10-08",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Gym wednesday",
+   "service": {
+    "title": "Gym",
+    "day": "2026-10-07",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Gym thursday",
+   "service": {
+    "title": "Gym",
+    "day": "2026-10-01",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Gym next friday",
+   "service": {
+    "title": "Gym",
+    "day": "2026-10-09",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Gym this friday",
+   "service": {
+    "title": "Gym",
+    "day": "2026-10-02",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Read chapter 5",
+   "service": {
+    "title": "Read chapter 5",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Friday",
+   "service": {
+    "title": "Friday",
+    "day": "2026-10-02",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call mum the day after tomorrow",
+   "service": {
+    "title": "Call mum",
+    "day": "2026-10-03",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call mum day after tomorrow",
+   "service": {
+    "title": "Call mum",
+    "day": "2026-10-03",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call mum the day before yesterday",
+   "service": {
+    "title": "Call mum the day before yesterday",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call mum yesterday",
+   "service": {
+    "title": "Call mum yesterday",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call mum tomorrow evening",
+   "service": {
+    "title": "Call mum",
+    "day": "2026-10-02",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call mum tomorrow morning",
+   "service": {
+    "title": "Call mum",
+    "day": "2026-10-02",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call mum tomorrow afternoon",
+   "service": {
+    "title": "Call mum",
+    "day": "2026-10-02",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call mum tomorrow night",
+   "service": {
+    "title": "Call mum",
+    "day": "2026-10-02",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call mum tonight",
+   "service": {
+    "title": "Call mum",
+    "day": "2026-10-01",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call mum this evening",
+   "service": {
+    "title": "Call mum",
+    "day": "2026-10-01",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call mum this morning",
+   "service": {
+    "title": "Call mum",
+    "day": "2026-10-01",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call mum this afternoon",
+   "service": {
+    "title": "Call mum",
+    "day": "2026-10-01",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call mum friday evening",
+   "service": {
+    "title": "Call mum",
+    "day": "2026-10-02",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call mum friday morning",
+   "service": {
+    "title": "Call mum",
+    "day": "2026-10-02",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Clean house this weekend",
+   "service": {
+    "title": "Clean house",
+    "day": "2026-10-03",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Clean house next weekend",
+   "service": {
+    "title": "Clean house",
+    "day": "2026-10-10",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Clean house at the weekend",
+   "service": {
+    "title": "Clean house",
+    "day": "2026-10-03",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Clean house on the weekend",
+   "service": {
+    "title": "Clean house",
+    "day": "2026-10-03",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Wake up at 5",
+   "service": {
+    "title": "Wake up",
+    "day": "2026-10-01",
+    "time": "17:00",
+    "rule": "",
+    "assumed": "pm"
+   }
+  },
+  {
+   "in": "Meet at 3",
+   "service": {
+    "title": "Meet",
+    "day": "2026-10-01",
+    "time": "15:00",
+    "rule": "",
+    "assumed": "pm"
+   }
+  },
+  {
+   "in": "Meet at 5 tomorrow",
+   "service": {
+    "title": "Meet",
+    "day": "2026-10-02",
+    "time": "17:00",
+    "rule": "",
+    "assumed": "pm"
+   }
+  },
+  {
+   "in": "Meet tomorrow at 5",
+   "service": {
+    "title": "Meet",
+    "day": "2026-10-02",
+    "time": "17:00",
+    "rule": "",
+    "assumed": "pm"
+   }
+  },
+  {
+   "in": "Meet at 5pm",
+   "service": {
+    "title": "Meet",
+    "day": "2026-10-01",
+    "time": "17:00",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Meet at 5 pm",
+   "service": {
+    "title": "Meet",
+    "day": "2026-10-01",
+    "time": "17:00",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Meet at 5:30pm",
+   "service": {
+    "title": "Meet",
+    "day": "2026-10-01",
+    "time": "17:30",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Meet 5pm tomorrow",
+   "service": {
+    "title": "Meet",
+    "day": "2026-10-02",
+    "time": "17:00",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Meet at 17:00",
+   "service": {
+    "title": "Meet",
+    "day": "2026-10-01",
+    "time": "17:00",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Pay rent first of october",
+   "service": {
+    "title": "Pay rent",
+    "day": "2026-10-01",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Pay rent the first of november",
+   "service": {
+    "title": "Pay rent",
+    "day": "2026-11-01",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Pay rent 1st of november",
+   "service": {
+    "title": "Pay rent",
+    "day": "2026-11-01",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Pay rent on the 15th",
+   "service": {
+    "title": "Pay rent",
+    "day": "2026-10-15",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Pay rent november 1",
+   "service": {
+    "title": "Pay rent",
+    "day": "2026-11-01",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Pay rent nov 1st",
+   "service": {
+    "title": "Pay rent",
+    "day": "2026-11-01",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call two days from now",
+   "service": {
+    "title": "Call",
+    "day": "2026-10-03",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call 2 days from now",
+   "service": {
+    "title": "Call",
+    "day": "2026-10-03",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call in two days",
+   "service": {
+    "title": "Call",
+    "day": "2026-10-03",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call in three weeks",
+   "service": {
+    "title": "Call",
+    "day": "2026-10-22",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call in a week",
+   "service": {
+    "title": "Call",
+    "day": "2026-10-08",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call in 2 months",
+   "service": {
+    "title": "Call",
+    "day": "2026-12-01",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call in 3 hours",
+   "now": "2026-10-01T05:58:52Z",
+   "service": {
+    "title": "Call",
+    "day": "2026-10-01",
+    "time": "08:58",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call in 30 minutes",
+   "now": "2026-10-01T05:58:52Z",
+   "service": {
+    "title": "Call",
+    "day": "2026-10-01",
+    "time": "06:28",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call in an hour",
+   "now": "2026-10-01T05:58:52Z",
+   "service": {
+    "title": "Call",
+    "day": "2026-10-01",
+    "time": "06:58",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call next month",
+   "service": {
+    "title": "Call",
+    "day": "2026-11-01",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call next year",
+   "service": {
+    "title": "Call",
+    "day": "2027-10-01",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call 3 days later",
+   "service": {
+    "title": "Call",
+    "day": "2026-10-04",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call a week from today",
+   "service": {
+    "title": "Call",
+    "day": "2026-10-08",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call a week from tomorrow",
+   "service": {
+    "title": "Call",
+    "day": "2026-10-09",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Report end of the month",
+   "service": {
+    "title": "Report",
+    "day": "2026-10-31",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Report end of month",
+   "service": {
+    "title": "Report",
+    "day": "2026-10-31",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Report by end of week",
+   "service": {
+    "title": "Report by end of week",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Report in a fortnight",
+   "service": {
+    "title": "Report in a fortnight",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Buy gifts christmas",
+   "service": {
+    "title": "Buy gifts christmas",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Buy gifts on christmas day",
+   "service": {
+    "title": "Buy gifts on christmas day",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Submit on 10/15",
+   "service": {
+    "title": "Submit",
+    "day": "2026-10-15",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Submit on 15/10",
+   "service": {
+    "title": "Submit",
+    "day": "2026-10-15",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Submit on 10/15/2026",
+   "service": {
+    "title": "Submit",
+    "day": "2026-10-15",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Submit 2026-10-15T14:00",
+   "service": {
+    "title": "Submit",
+    "day": "2026-10-15",
+    "time": "14:00",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Pay last friday",
+   "service": {
+    "title": "Pay last friday",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Pay this coming friday",
+   "service": {
+    "title": "Pay",
+    "day": "2026-10-02",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Pay the coming friday",
+   "service": {
+    "title": "Pay",
+    "day": "2026-10-02",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Pay friday after next",
+   "service": {
+    "title": "Pay",
+    "day": "2026-10-09",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Pay next tuesday at 9",
+   "service": {
+    "title": "Pay",
+    "day": "2026-10-06",
+    "time": "09:00",
+    "rule": "",
+    "assumed": "am"
+   }
+  },
+  {
+   "in": "Pay monday 9am",
+   "service": {
+    "title": "Pay",
+    "day": "2026-10-05",
+    "time": "09:00",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Pay mon 9am",
+   "service": {
+    "title": "Pay",
+    "day": "2026-10-05",
+    "time": "09:00",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Pay on thu",
+   "service": {
+    "title": "Pay",
+    "day": "2026-10-01",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Pay sat",
+   "service": {
+    "title": "Pay",
+    "day": "2026-10-03",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Take out bins every wednesday",
+   "service": {
+    "title": "Take out bins",
+    "day": "2026-10-07",
+    "time": "",
+    "rule": "1:week:3",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Pay rent every month",
+   "service": {
+    "title": "Pay rent",
+    "day": "2026-11-01",
+    "time": "",
+    "rule": "1:month",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Stretch daily",
+   "service": {
+    "title": "Stretch",
+    "day": "2026-10-02",
+    "time": "",
+    "rule": "1:day",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Water plants every other week",
+   "service": {
+    "title": "Water plants",
+    "day": "2026-10-15",
+    "time": "",
+    "rule": "2:week",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Standup every monday at 9am",
+   "service": {
+    "title": "Standup",
+    "day": "2026-10-05",
+    "time": "09:00",
+    "rule": "1:week:1",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Fix the may release",
+   "service": {
+    "title": "Fix the may release",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Talk to march team",
+   "service": {
+    "title": "Talk to team",
+    "day": "2027-03-01",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   },
+   "local": {
+    "title": "Talk to march team",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   },
+   "why": "A month name on its own is not claimed: it is too often a word (march, may). The New todo form says when such a word was not read."
+  },
+  {
+   "in": "Sun cream",
+   "service": {
+    "title": "cream",
+    "day": "2026-10-04",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Wed planner",
+   "service": {
+    "title": "planner",
+    "day": "2026-10-07",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Mar the paint",
+   "service": {
+    "title": "Mar the paint",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Watch 24 hours",
+   "service": {
+    "title": "Watch",
+    "day": "2026-10-02",
+    "time": "05:53",
+    "rule": "",
+    "assumed": ""
+   },
+   "local": {
+    "title": "Watch 24 hours",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   },
+   "why": "A length of time without in is not read as a date: it is more often part of the title."
+  },
+  {
+   "in": "Buy 2 eggs",
+   "service": {
+    "title": "Buy 2 eggs",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Room 101",
+   "service": {
+    "title": "Room 101",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Meeting at 3:30",
+   "service": {
+    "title": "Meeting",
+    "day": "2026-10-01",
+    "time": "15:30",
+    "rule": "",
+    "assumed": "pm"
+   }
+  },
+  {
+   "in": "Meeting at 15:30",
+   "service": {
+    "title": "Meeting",
+    "day": "2026-10-01",
+    "time": "15:30",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Meeting noon tomorrow",
+   "service": {
+    "title": "Meeting",
+    "day": "2026-10-02",
+    "time": "12:00",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Meeting midnight",
+   "service": {
+    "title": "Meeting",
+    "day": "2026-10-02",
+    "time": "00:00",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Meeting at midday",
+   "service": {
+    "title": "Meeting",
+    "day": "2026-10-01",
+    "time": "12:00",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Plan oct",
+   "service": {
+    "title": "Plan oct",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Plan october",
+   "service": {
+    "title": "Plan",
+    "day": "2026-10-01",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   },
+   "local": {
+    "title": "Plan october",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   },
+   "why": "A month name on its own is not claimed: it is too often a word (march, may). The New todo form says when such a word was not read."
+  },
+  {
+   "in": "Plan in october",
+   "service": {
+    "title": "Plan in",
+    "day": "2026-10-01",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   },
+   "local": {
+    "title": "Plan in october",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   },
+   "why": "A month name on its own is not claimed: it is too often a word (march, may). The New todo form says when such a word was not read."
+  },
+  {
+   "in": "Plan next october",
+   "service": {
+    "title": "Plan",
+    "day": "2026-10-01",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   },
+   "local": {
+    "title": "Plan next october",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   },
+   "why": "A month name on its own is not claimed: it is too often a word (march, may). The New todo form says when such a word was not read. The service reads next october as this one."
+  },
+  {
+   "in": "Book flights for march 3 2027",
+   "service": {
+    "title": "Book flights for",
+    "day": "2027-03-03",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Due by sept 30",
+   "service": {
+    "title": "Due",
+    "day": "2027-09-30",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Report end of next month",
+   "service": {
+    "title": "Report",
+    "day": "2026-11-30",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Report end of next year",
+   "service": {
+    "title": "Report",
+    "day": "2027-12-31",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Report end of the week",
+   "service": {
+    "title": "Report end of the week",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Pay rent on the 31st",
+   "service": {
+    "title": "Pay rent",
+    "day": "2026-10-31",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Contractor coming tomorrow",
+   "service": {
+    "title": "Contractor coming",
+    "day": "2026-10-02",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Yesterday I paid",
+   "service": {
+    "title": "Yesterday I paid",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Call 3 days ago",
+   "service": {
+    "title": "Call 3 days ago",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "2 weeks from today",
+   "service": {
+    "title": "2 weeks from today",
+    "day": "2026-10-15",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "3 days from tomorrow",
+   "service": {
+    "title": "3 days from tomorrow",
+    "day": "2026-10-05",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "monday after next",
+   "service": {
+    "title": "monday after next",
+    "day": "2026-10-12",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "the week after next",
+   "service": {
+    "title": "the week after next",
+    "day": "2026-10-15",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Lunch friday, dinner saturday",
+   "service": {
+    "title": "Lunch friday, dinner",
+    "day": "2026-10-03",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Standup every 2 weeks at 9am",
+   "service": {
+    "title": "Standup",
+    "day": "2026-10-01",
+    "time": "09:00",
+    "rule": "2:week",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Visit Tomorrow Land at Disney World",
+   "service": {
+    "title": "Visit Land at Disney World",
+    "day": "2026-10-02",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Friday Night Lights",
+   "service": {
+    "title": "Lights",
+    "day": "2026-10-02",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Mon Oncle",
+   "service": {
+    "title": "Oncle",
+    "day": "2026-10-05",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Buy a Sat phone",
+   "service": {
+    "title": "Buy a phone",
+    "day": "2026-10-03",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "March of the Penguins",
+   "service": {
+    "title": "the Penguins",
+    "day": "2027-03-01",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   },
+   "local": {
+    "title": "March of the Penguins",
+    "day": "",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   },
+   "why": "A month name on its own is not claimed: it is too often a word (march, may). The New todo form says when such a word was not read."
+  },
+  {
+   "in": "Wake up at 8",
+   "now": "2026-10-01T21:00:00Z",
+   "service": {
+    "title": "Wake up",
+    "day": "2026-10-02",
+    "time": "08:00",
+    "rule": "",
+    "assumed": "am"
+   }
+  },
+  {
+   "in": "Meet at 3",
+   "now": "2026-10-01T10:00:00Z",
+   "service": {
+    "title": "Meet",
+    "day": "2026-10-01",
+    "time": "15:00",
+    "rule": "",
+    "assumed": "pm"
+   }
+  },
+  {
+   "in": "Call at 9",
+   "now": "2026-10-01T20:00:00Z",
+   "service": {
+    "title": "Call",
+    "day": "2026-10-02",
+    "time": "09:00",
+    "rule": "",
+    "assumed": "am"
+   }
+  },
+  {
+   "in": "Dentist at 9",
+   "now": "2026-10-01T22:30:00Z",
+   "service": {
+    "title": "Dentist",
+    "day": "2026-10-02",
+    "time": "09:00",
+    "rule": "",
+    "assumed": "am"
+   }
+  },
+  {
+   "in": "Dinner at 7",
+   "now": "2026-10-01T21:00:00Z",
+   "service": {
+    "title": "Dinner",
+    "day": "2026-10-02",
+    "time": "07:00",
+    "rule": "",
+    "assumed": "am"
+   }
+  },
+  {
+   "in": "Meeting at 3",
+   "now": "2026-10-01T21:00:00Z",
+   "service": {
+    "title": "Meeting",
+    "day": "2026-10-02",
+    "time": "15:00",
+    "rule": "",
+    "assumed": "pm"
+   }
+  },
+  {
+   "in": "Call at 5",
+   "now": "2026-10-01T16:00:00Z",
+   "service": {
+    "title": "Call",
+    "day": "2026-10-01",
+    "time": "17:00",
+    "rule": "",
+    "assumed": "pm"
+   }
+  },
+  {
+   "in": "Movie at 8",
+   "now": "2026-10-01T14:00:00Z",
+   "service": {
+    "title": "Movie",
+    "day": "2026-10-01",
+    "time": "20:00",
+    "rule": "",
+    "assumed": "pm"
+   }
+  },
+  {
+   "in": "Standup at 9",
+   "now": "2026-10-01T08:00:00Z",
+   "service": {
+    "title": "Standup",
+    "day": "2026-10-01",
+    "time": "09:00",
+    "rule": "",
+    "assumed": "am"
+   }
+  },
+  {
+   "in": "Class at 7",
+   "now": "2026-10-01T10:00:00Z",
+   "service": {
+    "title": "Class",
+    "day": "2026-10-01",
+    "time": "19:00",
+    "rule": "",
+    "assumed": "pm"
+   }
+  },
+  {
+   "in": "Gym at 6",
+   "now": "2026-10-01T21:30:00Z",
+   "service": {
+    "title": "Gym",
+    "day": "2026-10-02",
+    "time": "06:00",
+    "rule": "",
+    "assumed": "am"
+   }
+  },
+  {
+   "in": "Call at 11",
+   "now": "2026-10-01T14:00:00Z",
+   "service": {
+    "title": "Call",
+    "day": "2026-10-02",
+    "time": "11:00",
+    "rule": "",
+    "assumed": "am"
+   }
+  },
+  {
+   "in": "Pick up at 5",
+   "now": "2026-10-01T09:00:00Z",
+   "service": {
+    "title": "Pick up",
+    "day": "2026-10-01",
+    "time": "17:00",
+    "rule": "",
+    "assumed": "pm"
+   }
+  },
+  {
+   "in": "Brunch at 11",
+   "now": "2026-10-01T21:00:00Z",
+   "service": {
+    "title": "Brunch",
+    "day": "2026-10-02",
+    "time": "11:00",
+    "rule": "",
+    "assumed": "am"
+   }
+  },
+  {
+   "in": "Lunch at 11:30",
+   "now": "2026-10-01T21:00:00Z",
+   "service": {
+    "title": "Lunch",
+    "day": "2026-10-02",
+    "time": "11:30",
+    "rule": "",
+    "assumed": "am"
+   }
+  },
+  {
+   "in": "Meet at half past 5",
+   "now": "2026-10-01T10:00:00Z",
+   "service": {
+    "title": "Meet",
+    "day": "2026-10-01",
+    "time": "17:30",
+    "rule": "",
+    "assumed": "pm"
+   }
+  },
+  {
+   "in": "Meet at quarter to 6",
+   "now": "2026-10-01T10:00:00Z",
+   "service": {
+    "title": "Meet",
+    "day": "2026-10-01",
+    "time": "17:45",
+    "rule": "",
+    "assumed": "pm"
+   }
+  },
+  {
+   "in": "Meet at 5 o'clock",
+   "now": "2026-10-01T10:00:00Z",
+   "service": {
+    "title": "Meet",
+    "day": "2026-10-01",
+    "time": "17:00",
+    "rule": "",
+    "assumed": "pm"
+   }
+  },
+  {
+   "in": "Journal at 8",
+   "now": "2026-10-01T20:30:00Z",
+   "service": {
+    "title": "Journal",
+    "day": "2026-10-02",
+    "time": "08:00",
+    "rule": "",
+    "assumed": "am"
+   }
+  },
+  {
+   "in": "Meet at 3pm",
+   "now": "2026-10-01T21:00:00Z",
+   "service": {
+    "title": "Meet",
+    "day": "2026-10-02",
+    "time": "15:00",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Meet at 15:00",
+   "now": "2026-10-01T21:00:00Z",
+   "service": {
+    "title": "Meet",
+    "day": "2026-10-02",
+    "time": "15:00",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Meet at noon",
+   "now": "2026-10-01T21:00:00Z",
+   "service": {
+    "title": "Meet",
+    "day": "2026-10-02",
+    "time": "12:00",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Pay rent friday at 9",
+   "now": "2026-10-01T10:00:00Z",
+   "service": {
+    "title": "Pay rent",
+    "day": "2026-10-02",
+    "time": "09:00",
+    "rule": "",
+    "assumed": "am"
+   }
+  },
+  {
+   "in": "Movie friday at 8",
+   "now": "2026-10-01T10:00:00Z",
+   "service": {
+    "title": "Movie",
+    "day": "2026-10-02",
+    "time": "08:00",
+    "rule": "",
+    "assumed": "am"
+   }
+  },
+  {
+   "in": "Dinner saturday at 6",
+   "now": "2026-10-01T10:00:00Z",
+   "service": {
+    "title": "Dinner",
+    "day": "2026-10-03",
+    "time": "18:00",
+    "rule": "",
+    "assumed": "pm"
+   }
+  },
+  {
+   "in": "Wake up tomorrow at 7",
+   "now": "2026-10-01T21:00:00Z",
+   "service": {
+    "title": "Wake up",
+    "day": "2026-10-02",
+    "time": "07:00",
+    "rule": "",
+    "assumed": "am"
+   }
+  },
+  {
+   "in": "Dinner tomorrow at 7",
+   "now": "2026-10-01T09:00:00Z",
+   "service": {
+    "title": "Dinner",
+    "day": "2026-10-02",
+    "time": "07:00",
+    "rule": "",
+    "assumed": "am"
+   }
+  },
+  {
+   "in": "Standup every monday at 3",
+   "now": "2026-10-01T10:00:00Z",
+   "service": {
+    "title": "Standup",
+    "day": "2026-10-05",
+    "time": "15:00",
+    "rule": "1:week:1",
+    "assumed": "pm"
+   }
+  },
+  {
+   "in": "Hike saturday at 7",
+   "now": "2026-10-01T20:00:00Z",
+   "service": {
+    "title": "Hike",
+    "day": "2026-10-03",
+    "time": "07:00",
+    "rule": "",
+    "assumed": "am"
+   }
+  },
+  {
+   "in": "Call Mom tomorrow at 8",
+   "now": "2026-10-01T20:00:00Z",
+   "service": {
+    "title": "Call Mom",
+    "day": "2026-10-02",
+    "time": "08:00",
+    "rule": "",
+    "assumed": "am"
+   }
+  },
+  {
+   "in": "Dentist friday at 9",
+   "now": "2026-10-01T21:00:00Z",
+   "service": {
+    "title": "Dentist",
+    "day": "2026-10-02",
+    "time": "09:00",
+    "rule": "",
+    "assumed": "am"
+   }
+  },
+  {
+   "in": "Interview thursday at 9",
+   "now": "2026-10-01T09:00:00Z",
+   "service": {
+    "title": "Interview",
+    "day": "2026-10-01",
+    "time": "09:00",
+    "rule": "",
+    "assumed": "am"
+   }
+  },
+  {
+   "in": "Buy milk in 2 months",
+   "now": "2026-12-31T10:00:00Z",
+   "service": {
+    "title": "Buy milk",
+    "day": "2027-03-03",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   },
+   "local": {
+    "title": "Buy milk",
+    "day": "2027-02-28",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   },
+   "why": "Calendar month and year arithmetic clamps to the last real day here instead of overflowing into the next month."
+  },
+  {
+   "in": "Buy milk next month",
+   "now": "2026-03-31T10:00:00Z",
+   "service": {
+    "title": "Buy milk",
+    "day": "2026-05-01",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   },
+   "local": {
+    "title": "Buy milk",
+    "day": "2026-04-30",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   },
+   "why": "Calendar month and year arithmetic clamps to the last real day here instead of overflowing into the next month."
+  },
+  {
+   "in": "Buy milk in 1 year",
+   "now": "2024-02-29T10:00:00Z",
+   "service": {
+    "title": "Buy milk",
+    "day": "2025-03-01",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   },
+   "local": {
+    "title": "Buy milk",
+    "day": "2025-02-28",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   },
+   "why": "Calendar month and year arithmetic clamps to the last real day here instead of overflowing into the next month."
+  },
+  {
+   "in": "Call monday at 9",
+   "now": "2026-10-05T08:00:00Z",
+   "service": {
+    "title": "Call",
+    "day": "2026-10-05",
+    "time": "09:00",
+    "rule": "",
+    "assumed": "am"
+   }
+  },
+  {
+   "in": "Clean on the weekend",
+   "now": "2026-10-03T08:00:00Z",
+   "service": {
+    "title": "Clean",
+    "day": "2026-10-03",
+    "time": "",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Stretch daily at 10",
+   "now": "2026-10-01T10:00:00Z",
+   "service": {
+    "title": "Stretch",
+    "day": "2026-10-01",
+    "time": "10:00",
+    "rule": "1:day",
+    "assumed": "am"
+   },
+   "local": {
+    "title": "Stretch",
+    "day": "2026-10-02",
+    "time": "10:00",
+    "rule": "1:day",
+    "assumed": "am"
+   },
+   "why": "A time equal to now advances to the next occurrence here, so capture offers a future occurrence."
+  },
+  {
+   "in": "Lunch at 12 in the afternoon",
+   "now": "2026-10-01T10:00:00Z",
+   "service": {
+    "title": "Lunch",
+    "day": "2026-10-01",
+    "time": "12:00",
+    "rule": "",
+    "assumed": ""
+   }
+  },
+  {
+   "in": "Meet at 12 tonight",
+   "now": "2026-10-01T10:00:00Z",
+   "service": {
+    "title": "Meet",
+    "day": "2026-10-01",
+    "time": "12:00",
+    "rule": "",
+    "assumed": ""
+   },
+   "local": {
+    "title": "Meet",
+    "day": "2026-10-01",
+    "time": "00:00",
+    "rule": "",
+    "assumed": ""
+   },
+   "why": "An explicit morning or night at 12 means midnight here; the service reads these ambiguous phrases as noon."
+  },
+  {
+   "in": "Meet at 12 in the morning",
+   "now": "2026-10-01T10:00:00Z",
+   "service": {
+    "title": "Meet",
+    "day": "2026-10-01",
+    "time": "12:00",
+    "rule": "",
+    "assumed": ""
+   },
+   "local": {
+    "title": "Meet",
+    "day": "2026-10-02",
+    "time": "00:00",
+    "rule": "",
+    "assumed": ""
+   },
+   "why": "An explicit morning or night at 12 means midnight here; the service reads these ambiguous phrases as noon."
+  }
+ ]
+}
