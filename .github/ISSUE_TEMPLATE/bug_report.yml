@@ -1,0 +1,52 @@
+name: Bug report
+description: Something in the TUI or CLI doesn't work as it should
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you saw, and what you expected to see instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Run `evado -local add "Call the bank friday"`
+        2. ...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: The output of `evado -version`.
+      placeholder: evado 1.0.0
+    validations:
+      required: true
+  - type: input
+    id: platform
+    attributes:
+      label: Platform and terminal
+      placeholder: macOS 26 on Apple silicon, Ghostty
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: How were you using it?
+      options:
+        - Signed in to an Evado account
+        - Without an account (todos on this computer)
+        - Demo mode (evado -demo)
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Error output
+      description: Any error message, or the `-json` error from a CLI command. Remove tokens and personal todos first.
+      render: shell
