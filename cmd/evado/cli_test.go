@@ -415,6 +415,45 @@ func TestParseSaysWhenATimeWasAssumed(t *testing.T) {
 	}
 }
 
+func TestParseSaysWhenARepeatWasUnderstood(t *testing.T) {
+	f := testapi.New()
+	at := time.Date(2026, 11, 23, 0, 0, 0, 0, time.UTC)
+	rule := "2:week:1"
+	f.Parsed = api.ParsePreview{
+		Title:          "Gym",
+		DoAt:           &at,
+		HasTime:        false,
+		RecurrenceRule: &rule,
+	}
+	out, err := run(t, f, "", "parse", "Gym", "every", "other", "monday")
+	if err != nil || !strings.Contains(out, "repeat  every 2 weeks on Monday") {
+		t.Errorf("parse of repeating todo: %q %v; want repeat line", out, err)
+	}
+	if !strings.Contains(out, "title   Gym") {
+		t.Errorf("parse output missing title: %q", out)
+	}
+
+	out, err = run(t, f, "", "parse", "-json", "Gym", "every", "other", "monday")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var got struct {
+		Parse struct {
+			RecurrenceRule *string `json:"recurrenceRule"`
+		} `json:"parse"`
+	}
+	if err := json.Unmarshal([]byte(out), &got); err != nil || got.Parse.RecurrenceRule == nil || *got.Parse.RecurrenceRule != "2:week:1" {
+		t.Errorf("parse -json: %q %v; want recurrenceRule 2:week:1", out, err)
+	}
+
+	// Without a repeat, no repeat line is printed.
+	f.Parsed.RecurrenceRule = nil
+	out, err = run(t, f, "", "parse", "Gym")
+	if err != nil || strings.Contains(out, "repeat") {
+		t.Errorf("parse of non-repeating todo had repeat line: %q %v", out, err)
+	}
+}
+
 func TestErrorTextNamesCandidates(t *testing.T) {
 	_, err := run(t, testapi.New(), "", "show", "aaa")
 	text := errorText(err)

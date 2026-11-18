@@ -532,7 +532,7 @@ func (m *Model) parseSummary(p *api.ParsePreview) string {
 		bits = append(bits, at)
 	}
 	if p.RecurrenceRule != nil && *p.RecurrenceRule != "" {
-		bits = append(bits, recurLabel(*p.RecurrenceRule))
+		bits = append(bits, local.RecurLabel(*p.RecurrenceRule))
 	}
 	if p.DueAt != nil {
 		bits = append(bits, "due "+p.DueAt.In(m.loc).Format("2 Jan 15:04"))
@@ -956,29 +956,6 @@ func (v *todosView) detailPane(w, h int) string {
 	})
 }
 
-// recurLabel reads a recurrence rule such as 1:week:3 back in words.
-func recurLabel(rule string) string {
-	parts := strings.Split(rule, ":")
-	if len(parts) < 2 {
-		return rule
-	}
-	n, err := strconv.Atoi(parts[0])
-	if err != nil || n < 1 {
-		return rule
-	}
-	out := "every " + parts[1]
-	if n > 1 {
-		out = fmt.Sprintf("every %d %ss", n, parts[1])
-	}
-	if len(parts) > 2 {
-		// The rule counts Monday as 1 and Sunday as 7.
-		if d, err := strconv.Atoi(parts[2]); err == nil && d >= 1 && d <= 7 {
-			out += " on " + time.Weekday(d % 7).String()[:3]
-		}
-	}
-	return out
-}
-
 // lateness says how far past its deadline a todo is.
 func (m *Model) lateness(t api.Todo) string {
 	if t.Completed() || t.DueAt == nil || !t.DueAt.Before(m.now) {
@@ -1041,7 +1018,7 @@ func (v *todosView) todoCard(t api.Todo, steps []api.ChecklistItem, haveSteps bo
 		chips = append(chips, styFaint.Render("anyone"))
 	}
 	if t.RecurrenceRule != nil && *t.RecurrenceRule != "" {
-		chips = append(chips, stySoon.Render("↻ ")+styMuted.Render(recurLabel(*t.RecurrenceRule)))
+		chips = append(chips, stySoon.Render("↻ ")+styMuted.Render(local.RecurLabel(*t.RecurrenceRule)))
 	}
 	if l, ok := m.listByID(t.ListID); ok && l.ReadOnly {
 		chips = append(chips, styWarn.Render("⊘ list is read-only"))

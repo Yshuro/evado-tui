@@ -1077,6 +1077,9 @@ func (c *cli) parse(ctx context.Context, args []string) error {
 	if pv.DueAt != nil {
 		fmt.Fprintf(&b, "due     %s\n", stamp(pv.DueAt))
 	}
+	if pv.RecurrenceRule != nil && *pv.RecurrenceRule != "" {
+		fmt.Fprintf(&b, "repeat  %s\n", local.RecurLabel(*pv.RecurrenceRule))
+	}
 	if a := pv.AssumedTime; a != nil {
 		fmt.Fprintf(&b, "assumed %q was read as %s", a.Text, strings.ToUpper(a.Assumed))
 		if hint := a.Hint(); hint != "" {
@@ -1090,7 +1093,7 @@ func (c *cli) parse(ctx context.Context, args []string) error {
 	case api.TimeMoved:
 		b.WriteString("passed  that time has passed today, so it is for tomorrow; -passed kept keeps it on today\n")
 	}
-	if pv.ScheduledDay == nil && pv.DoAt == nil && pv.DueAt == nil {
+	if pv.ScheduledDay == nil && pv.DoAt == nil && pv.DueAt == nil && (pv.RecurrenceRule == nil || *pv.RecurrenceRule == "") {
 		b.WriteString("no date: it would go to the inbox\n")
 	}
 	return c.write(b.String())

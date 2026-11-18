@@ -251,3 +251,28 @@ func TestNextOccurrence(t *testing.T) {
 		}
 	}
 }
+
+func TestRecurLabel(t *testing.T) {
+	cases := map[string]string{
+		"1:day":    "every day",
+		"2:day":    "every 2 days",
+		"1:week":   "every week",
+		"2:week":   "every 2 weeks",
+		"1:week:1": "every week on Monday",
+		"2:week:1": "every 2 weeks on Monday",
+		"1:week:5": "every week on Friday",
+		"1:week:7": "every week on Sunday",
+		"1:month":  "every month",
+		"3:month":  "every 3 months",
+		"1:year":   "every year",
+		"2:year":   "every 2 years",
+		"custom":   "custom",
+		"":         "",
+		"0:day":    "0:day",
+	}
+	for in, want := range cases {
+		if got := RecurLabel(in); got != want {
+			t.Errorf("RecurLabel(%q) = %q, want %q", in, got, want)
+		}
+	}
+}

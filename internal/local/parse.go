@@ -1264,6 +1264,29 @@ func ValidRule(s string) bool {
 	return ok
 }
 
+// RecurLabel reads a recurrence rule such as 1:week:3 back in words.
+func RecurLabel(ruleText string) string {
+	parts := strings.Split(ruleText, ":")
+	if len(parts) < 2 {
+		return ruleText
+	}
+	n, err := strconv.Atoi(parts[0])
+	if err != nil || n < 1 {
+		return ruleText
+	}
+	out := "every " + parts[1]
+	if n > 1 {
+		out = fmt.Sprintf("every %d %ss", n, parts[1])
+	}
+	if len(parts) > 2 {
+		// The rule counts Monday as 1 and Sunday as 7.
+		if d, err := strconv.Atoi(parts[2]); err == nil && d >= 1 && d <= 7 {
+			out += " on " + time.Weekday(d%7).String()
+		}
+	}
+	return out
+}
+
 func parseRule(s string) (rule, bool) {
 	parts := strings.Split(s, ":")
 	if len(parts) < 2 || len(parts) > 3 {

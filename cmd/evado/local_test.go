@@ -124,6 +124,18 @@ func TestParseOnThisComputerSaysWhenATimeWasAssumed(t *testing.T) {
 	}
 }
 
+// On this computer, parse includes a repeat line for repeating tasks.
+func TestParseOnThisComputerSaysWhenARepeatWasUnderstood(t *testing.T) {
+	path := filepath.Join(t.TempDir(), "todos.json")
+	out, err := runLocal(t, path, "parse", "Gym every other monday")
+	if err != nil || !strings.Contains(out, "repeat  every 2 weeks on Monday") {
+		t.Errorf("parse: %q %v; want repeat line", out, err)
+	}
+	if !strings.Contains(out, "title   Gym") {
+		t.Errorf("parse: %q; want title Gym", out)
+	}
+}
+
 // Every command that makes sense without the service works on the file,
 // short ids included, which are matched by reading every todo.
 func TestCommandsWorkOnTheTodosHere(t *testing.T) {
